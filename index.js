@@ -3,7 +3,7 @@ var canvas = document.getElementById("canva");
 canvas.onselectstart = function () { return false; }
 //event.preventDefault();
 var context = canvas.getContext('2d');
-
+//
 
 canvas.height=window.innerHeight;
 canvas.width=window.innerWidth;
