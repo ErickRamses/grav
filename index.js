@@ -1,4 +1,4 @@
-console.log("sa")
+//console.log("sa")
 var canvas = document.getElementById("canva");
 canvas.onselectstart = function () { return false; }
 //event.preventDefault();
@@ -31,7 +31,17 @@ let numv=0
     let secondY
     let firstX;
     let fisrtY;
-
+    let scrolled =false;
+window.addEventListener("scroll",()=>{
+     scrolled =true;
+        
+        //let width = canvas.width;
+        //let height = canvas.height;    
+        
+       
+        
+    })
+    
 canvas.addEventListener('mousedown',make)
 
 function reset(){
@@ -161,7 +171,7 @@ class sun{
         
         let dista =Math.sqrt((((suns[z].x1-this.x1)*(suns[z].x1-this.x1))+((suns[z].y1-this.y1)*(suns[z].y1-this.y1))))
         if (dista<=suns[z].radio){
-           console.log("colition")
+           //console.log("colition")
             this.alive=false
             this.massa=0
             this.x1=-10000
@@ -484,6 +494,8 @@ for(let i=0;i<100;i++){
 for(let i=0;i<50;i++){
     planets.push(new planet(i,100+i,(height-50)-i,0,0))
     planets.push(new planet(i,100-i,(height-50)-i,0,0))
+    planets.push(new planet(i,400+i,10*i,0,0))
+    
     
 }
 // for(let i=0;planets.length<100;i++){
@@ -493,13 +505,26 @@ for(let i=0;i<50;i++){
 
  
 
-suns[0]=new sun(0,200,200,200,1,0)
-suns[1]=new sun(1,200,200,300,0,0)
+suns[0]=new sun(0,20,200,200,.4,0)
+suns[1]=new sun(1,20,200,250,0,0)
+suns[2]=new sun(2,20,300,250,0,0)
+
 // suns[1]=new sun(1,200,600,400,-.98,.1)
 // //suns[2]=new sun(2,190,200,500,0,-.91)
 // //suns[3]=new sun(3,190,200,300,.8,.9)
 // //suns[2]=new sun(2,200,350,350,1,0)
+canvas.addEventListener("touchmove",(e)=>
+{
+   if (!down){return} 
+   secondX= e.offsetX
+   secondY=e.offsetY
+   console.log(e)
 
+    for(let x=0;x<numv;x++){
+     tracks.pop()
+ }
+     numv=0
+})
 canvas.addEventListener('mousemove',(e)=>
 {
    if (!down){return} 
@@ -604,6 +629,15 @@ canvas.onselectstart = function () { return false; }
 function painta(){
     context.fillStyle ="black"
     context.fillRect(0,0,canvas.width,canvas.height)
+      
+     if(!scrolled){
+
+         context.font = "30px Arial";
+         context.fillStyle ="red"
+         context.fillText("Scroll",65,height-10);
+    context.fillStyle ="black"
+
+     }
     if(down){
         context.beginPath();
         context.lineWidth=5;
@@ -652,7 +686,7 @@ function painta(){
         if(document.getElementById("chaca").checked){
 
             if(document.getElementById("chac").checked){
-                suns.push(new sun(suns.length,document.getElementById("masa").value,firstX,fisrtY,(firstX-secondX)/50,(fisrtY-secondY)/50))
+                //suns.push(new sun(suns.length,document.getElementById("masa").value,firstX,fisrtY,(firstX-secondX)/50,(fisrtY-secondY)/50))
                    }
             else{
                 planets.push(new planet('l',firstX,fisrtY,(firstX-secondX)/50,(fisrtY-secondY)/50))
