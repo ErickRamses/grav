@@ -170,15 +170,22 @@ class sun{
     distance(z){
         
         let dista =Math.sqrt((((suns[z].x1-this.x1)*(suns[z].x1-this.x1))+((suns[z].y1-this.y1)*(suns[z].y1-this.y1))))
-        if (dista<=suns[z].radio){
-           //console.log("colition")
-            this.alive=false
-            this.massa=0
-            this.x1=-10000
-            suns[z].alive=false
-            suns[z].x1=-10000
+        if (dista<=suns[z].radio && this.alive && suns[z].alive){
+            //console.log("colition")
+           
+            suns.push(new sun(suns.length,parseFloat(this.massa) +parseFloat(suns[z].massa),suns[z].x1+(suns[z].x1-this.x1)/2,suns[z].y1+(suns[z].y1-this.y1)/2,((parseFloat(this.vx)*parseFloat(this.massa))+(parseFloat(suns[z].vx)*parseFloat(suns[z].massa)))/(parseFloat(this.massa)+parseFloat(suns[z].massa)),((parseFloat(this.vy)*parseFloat(this.massa))+(parseFloat(suns[z].vy)*parseFloat(suns[z].massa)))/(parseFloat(this.massa)+parseFloat(suns[z].massa))))
+            
+           
+           this.alive=false
+           this.massa=0
+           this.x1=-10000
+           suns[z].alive=false
+           suns[z].x1=-10000
+           
+           suns[z].massa=0
+           
 
-            suns[z].massa=0
+            ///create new sun with sum of forces
         } 
         return dista
         //change .this
@@ -686,7 +693,7 @@ function painta(){
         if(document.getElementById("chaca").checked){
 
             if(document.getElementById("chac").checked){
-                //suns.push(new sun(suns.length,document.getElementById("masa").value,firstX,fisrtY,(firstX-secondX)/50,(fisrtY-secondY)/50))
+                suns.push(new sun(suns.length,document.getElementById("masa").value,firstX,fisrtY,(firstX-secondX)/50,(fisrtY-secondY)/50))
                    }
             else{
                 planets.push(new planet('l',firstX,fisrtY,(firstX-secondX)/50,(fisrtY-secondY)/50))
