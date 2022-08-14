@@ -81,7 +81,10 @@ let time =setInterval(space,1000/60)
 //divie planets and suns
 function space(){
     painta()
-
+    //we calculate per speed but not paint i doesnot matter for now
+    // if(document.getElementById("speed").value<=1 && document.getElementById("speed").value>=0 ){
+    //     //soo paint every frame but calculate every loops 1/(speed)
+    // }
     for(let i=0;i<document.getElementById("speed").value;i++){
     for(let i=0;i<planets.length;i++){
         planets[i].begin()       
@@ -173,8 +176,9 @@ class sun{
         if (dista<=suns[z].radio && this.alive && suns[z].alive){
             //console.log("colition")
            
-            suns.push(new sun(suns.length,parseFloat(this.massa) +parseFloat(suns[z].massa),suns[z].x1+(suns[z].x1-this.x1)/2,suns[z].y1+(suns[z].y1-this.y1)/2,((parseFloat(this.vx)*parseFloat(this.massa))+(parseFloat(suns[z].vx)*parseFloat(suns[z].massa)))/(parseFloat(this.massa)+parseFloat(suns[z].massa)),((parseFloat(this.vy)*parseFloat(this.massa))+(parseFloat(suns[z].vy)*parseFloat(suns[z].massa)))/(parseFloat(this.massa)+parseFloat(suns[z].massa))))
-            
+            //i kwon its bad code ill learnd of this
+            suns.push(new sun(suns.length,parseFloat(this.massa) +parseFloat(suns[z].massa),suns[z].x1+(suns[z].x1-this.x1)/suns[z].massa,suns[z].y1+(suns[z].y1-this.y1)/suns[z].massa,((parseFloat(this.vx)*parseFloat(this.massa))+(parseFloat(suns[z].vx)*parseFloat(suns[z].massa)))/(parseFloat(this.massa)+parseFloat(suns[z].massa)),((parseFloat(this.vy)*parseFloat(this.massa))+(parseFloat(suns[z].vy)*parseFloat(suns[z].massa)))/(parseFloat(this.massa)+parseFloat(suns[z].massa))))
+            //it will create cordenates depending of mass siimilar to force
            
            this.alive=false
            this.massa=0
@@ -512,9 +516,13 @@ for(let i=0;i<50;i++){
 
  
 
-suns[0]=new sun(0,20,200,200,.4,0)
-suns[1]=new sun(1,20,200,250,0,0)
-suns[2]=new sun(2,20,300,250,0,0)
+suns[0]=new sun(0,20,200,100,.4,0)
+suns[1]=new sun(1,20,200,150,0,0)
+suns[2]=new sun(2,20,300,150,0,0)
+suns[3]=new sun(3,20,430,350,.1,0)
+suns[4]=new sun(4,50,30,150,0,0)
+suns[5]=new sun(5,100,100,350,-.4,.1)
+suns[6]=new sun(6,100,300,450,.4,.1)
 
 // suns[1]=new sun(1,200,600,400,-.98,.1)
 // //suns[2]=new sun(2,190,200,500,0,-.91)
